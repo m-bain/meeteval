@@ -9,16 +9,6 @@ import dataclasses
 from dataclasses import dataclass
 from itertools import groupby
 
-if typing.TYPE_CHECKING:
-    from typing import Self
-    from meeteval.io.uem import UEM, UEMLine
-    from meeteval.io.stm import STM, STMLine
-    from meeteval.io.ctm import CTM, CTMLine
-    from meeteval.io.rttm import RTTM, RTTMLine
-
-    LineSubclasses = 'UEMLine | STMLine | CTMLine | RTTMLine'
-    Subclasses = 'UEM | STM | CTM | RTTM'
-
 
 @dataclass(frozen=True)
 class BaseLine:
