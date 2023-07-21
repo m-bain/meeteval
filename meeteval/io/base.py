@@ -313,16 +313,22 @@ def _open(f, mode='r'):
 
 
 def load(file, parse_float=float):
-    import meeteval
+    from meeteval.io.uem import UEM
+    from meeteval.io.stm import STM
+    from meeteval.io.ctm import CTM
+    from meeteval.io.rttm import RTTM
+
+    LineSubclasses = 'UEMLine | STMLine | CTMLine | RTTMLine'
+    Subclasses = 'UEM | STM | CTM | RTTM'
     file = Path(file)
     if file.suffix == '.stm':
-        load_fn = meeteval.io.stm.STM.load
+        load_fn = meeteval.io.stm.STM
     elif file.suffix == '.rttm':
-        load_fn = meeteval.io.rttm.RTTM.load
+        load_fn = meeteval.io.rttm.RTTM
     elif file.suffix == '.uem':
-        load_fn = meeteval.io.uem.UEM.load
+        load_fn = meeteval.io.uem.UEM
     elif file.suffix == '.ctm':
-        load_fn = meeteval.io.ctm.CTM.load
+        load_fn = meeteval.io.ctm.CTM
     else:
         raise ValueError(f'Unknown file type: {file}')
     return load_fn(file, parse_float=parse_float)
