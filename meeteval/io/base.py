@@ -322,13 +322,13 @@ def load(file, parse_float=float):
     Subclasses = 'UEM | STM | CTM | RTTM'
     file = Path(file)
     if file.suffix == '.stm':
-        load_fn = meeteval.io.stm.STM
+        load_fn = STM.load
     elif file.suffix == '.rttm':
-        load_fn = meeteval.io.rttm.RTTM
+        load_fn = RTTM.load
     elif file.suffix == '.uem':
-        load_fn = meeteval.io.uem.UEM
+        load_fn = UEM.load
     elif file.suffix == '.ctm':
-        load_fn = meeteval.io.ctm.CTM
+        load_fn = CTM.load
     else:
         raise ValueError(f'Unknown file type: {file}')
     return load_fn(file, parse_float=parse_float)
